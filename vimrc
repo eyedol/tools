@@ -1,5 +1,5 @@
 "Getting vim to work the way I want"
-" Aurthor: Henry Addo <henry@addhen.org>"
+" Author: Henry Addo <henry@addhen.org>"
 
 set nocompatible              "don't need to keep compatibility with Vi
 set background=dark           "make vim use colors that look good on a dark background

@@ -101,4 +101,4 @@ fi
 PS1=":-)"
 
 #AndroidDev PATH
-export PATH=${PATH}:/home/<username>/Devel/Java/Android/android-sdk-linux_x86-1.6_r1/tools
+export PATH=${PATH}:/home/<username>/<path_to_android_sdk>/tools
