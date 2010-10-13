@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Copies ushahidi codes to test server over rsync
+#Copies ushahidi codes to a test server over rsync
 # Author: Henry Addo <henry@addhen.org>"
 
 rsync -e 'ssh -p 1313' -avz --exclude=application/config/config.php  --exclude=.htaccess --exclude=application/logs/ --exclude=application/cache --exclude=application/config/database.php --exclude=application/config/alerts.php --delete <path_to_development_workspace> <path_to_test_webserver>
