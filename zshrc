@@ -3,7 +3,7 @@
 
 autoload -Uz promptinit
 promptinit
-export PS1=":-)"
+PROMPT=$'%{\e[1;35m%}:-)'
 
 #Set editor to use by default
 EDITOR=vim
@@ -35,6 +35,7 @@ alias lh='ls -A'
 #auto complete subdirectory in project folder
 cdpath=($cdpath ~ ~/Work/Workspace ..)
 typeset -U path cdpath fpath manpath
+
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
