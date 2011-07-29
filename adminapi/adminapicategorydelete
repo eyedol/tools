@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#Copies ushahidi codes to a test server over rsync
+# Author: Henry Addo <henry@addhen.org>"
+
+curl -v -u 'admin' -F 'task=category' \
+-F 'action=delete' \
+-F 'category_id=9' \
+'http://localhost/ush/api'

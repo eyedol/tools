@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#Copies ushahidi codes to a test server over rsync
+# Author: Henry Addo <henry@addhen.org>"
+
+curl -v -u 'admin:admin' -F 'task=reports' \
+-F 'by=unverified' \
+'http://localhost/ush/api'
