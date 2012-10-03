@@ -3,9 +3,7 @@
 #Copies ushahidi codes to a test server over rsync
 # Author: Henry Addo <henry@addhen.org>"
 
-curl -v -u 'admin:admin' -F 'task=reports' \
--F 'action=edit' \
--F 'incident_id=1' \
+curl -v -F 'task=report' \
 -F 'incident_title=Hello Ushahidi Edited' \
 -F 'incident_description=Description Edited' \
 -F 'incident_date=03/18/2009' \
@@ -22,4 +20,4 @@ curl -v -u 'admin:admin' -F 'task=reports' \
 -F 'incident_active=1' \
 -F 'incident_verified=1' \
 -F 'person_email=henry@ushahidi.com' \
-'http://localhost/ush/api'
+'http://contamos.unam.mx/api    '
