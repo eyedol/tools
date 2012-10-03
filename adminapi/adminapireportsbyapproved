@@ -3,6 +3,6 @@
 #Copies ushahidi codes to a test server over rsync
 # Author: Henry Addo <henry@addhen.org>"
 
-curl -v -u 'admin:admin' -F 'task=reports' \
+curl -v -u 'dalezak@gmail.com:;YAPqXRV8iI2vlB' -F 'task=reports' \
 -F 'by=approved' \
-'http://localhost/ush/api'
+ 'https://tedxmap.crowdmap.com/api'
