@@ -1,6 +1,0 @@
-#!/bin/bash
-
-#Copies ushahidi codes to a test server over rsync
-# Author: Henry Addo <henry@addhen.org>"
-
-rsync -rvzE --exclude=application/config/config.php  --exclude=.htaccess --exclude=application/logs/ --exclude=application/cache --exclude=application/config/database.php --exclude=application/config/encryption.php --exclude=application/config/alerts.php --delete /home/eyedol/Devel/Workspace/Ushahidi_Web/ /var/www/develop/
