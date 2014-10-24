@@ -42,6 +42,15 @@ typeset -U path cdpath fpath manpath
 
 #git stuff
 
+# Grab file here https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
+# Install it in .zsh/completion/_git/
+
+zstyle ':completion:*:*:git:*' script ~/.zsh/completion/_git/git-completion.zsh
+
+## Add Git auto completion script
+fpath=(~/.zsh $fpath)
+
+
 #pull current branch name
 function current_branch() {
     ref=$(git symbolic-ref HEAD 2> /dev/null) || return
