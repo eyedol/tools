@@ -65,6 +65,11 @@ alias glg='git log --stat --max-count=5'
 alias ggpull='git pull origin $(current_branch)'
 alias ggpush='git push origin $(current_branch)'
 alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
+alias ggcmt='git commit -S -a'
+alias gbc='git checkout -b'
+alias gbs='git show-branch'
+alias gbS='git show-branch -a'
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%Creset %s %Cgreen(%cr) %C(yellow)%d%Creset' --abbrev-commit --date=relative"
 
 typeset -ag chpwd_functions
 typeset -ag precmd_functions
