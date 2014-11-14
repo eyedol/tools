@@ -80,12 +80,13 @@ export git_repo
 
 function git_chpwd() {
     if [[ $(git status > /dev/null 2>&1; echo $?) -eq 0 ]]; then
-	    base_right_prompt="[%{$fg[blue]%}git"
-	    right_prompt_end="%{$reset_color%}]± "
-	    git_repo=1
+
+        base_right_prompt="[%{$fg[blue]%}git"
+        right_prompt_end="%{$reset_color%}]± "
+        git_repo=1
     else
-	    base_right_prompt=''
-	    git_repo=0
+        base_right_prompt=''
+        git_repo=0
     fi
 }
 
@@ -97,11 +98,12 @@ function git_precmd() {
         remote=$(print $git_status | grep 'Your branch is ahead')
         untracked=$(print $git_status | grep '^nothing added to commit but untracked files present')
         clean=$(print $git_status | grep '^nothing to commit')
-        right_prompt=$base_right_prompt
+        git_branch=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
+        git_branch_name="%{$fg[yellow]%}:$git_branch"
+        right_prompt=":"
 
         if [[ -n $remote || -z $clean ]]; then
-            right_prompt="${right_prompt}:"
-        
+
             if [[ -n $remote ]]; then
                 right_prompt="${right_prompt}%{$fg[red]%}P"
             fi
@@ -114,7 +116,7 @@ function git_precmd() {
                 right_prompt="${right_prompt}%{$fg[cyan]%}C"
             fi
         fi
-        PROMPT="${right_prompt}${right_prompt_end}"
+        PROMPT="${base_right_prompt}${git_branch_name}${right_prompt}${right_prompt_end}"
     else
         PROMPT=":-) "
 
