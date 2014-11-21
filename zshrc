@@ -19,6 +19,14 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
+# Custom path
+export ANDROID_HOME=/opt/android-sdk/sdk
+
+export ARC_HOME=~/Devel/Workspace/arcanist/arcanist
+
+export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ARC_HOME/bin:$PATH
+
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
