@@ -4,7 +4,7 @@
  * This script sends build status info to Phabricator's Harbormaster.
  *
  * This script runs as a Post-Build task on Jenkins.
- * It needs the Jenkins job name passed  and Phabricator's PHID as command line
+ * It needs the Jenkins job name and Phabricator's PHID passed as command line
  * argument.
  *
  * Eg. php ~/post-build-task/index.php -j 'Jenkins-Build-Job-Id' -p $PHID
