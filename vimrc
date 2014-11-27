@@ -36,4 +36,4 @@ set hidden                    "allow hiding buffers with unsaved changes
 
 set number                    "show line numbers"
 
-set clipboard+=unnamed        "Copy stuff to the system clipboard instead of the vim buffer"
+set clipboard=unnamed        "Copy stuff to the system clipboard instead of the vim buffer"
