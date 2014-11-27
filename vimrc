@@ -35,3 +35,5 @@ set wrap                      "wrap entire words, don't break them; much easier 
 set hidden                    "allow hiding buffers with unsaved changes
 
 set number                    "show line numbers"
+
+set clipboard+=unnamed        "Copy stuff to the system clipboard instead of the vim buffer"
