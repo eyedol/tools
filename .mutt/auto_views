@@ -1,0 +1,10 @@
+auto_view application/msword application/vnd.msword
+auto_view application/excel application/ms-Excel application/msexcel
+auto_view application/vnd.ms-excel application/x-excel
+auto_view application/x-msexcel
+auto_view application/vnd.ms-powerpoint application/x-mspowerpoint application/ppt
+auto_view text/html
+auto_view application/x-pgp-message
+auto_view image/*
+auto_view application/pdf
+auto_view application/octet-stream

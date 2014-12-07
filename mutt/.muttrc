@@ -1,0 +1,16 @@
+push V
+
+# Local Folders --------------------------------
+set header_cache        = ~/.mutt/cache/headers
+set message_cachedir    = ~/.mutt/cache/bodies
+set certificate_file    = ~/.mutt/
+unset signature           #= ~/.mutt/signature
+set mailcap_path        = ~/.mutt/mailcap
+source                  ~/.mutt/general         # General settings
+source                  ~/.mutt/colors          # All the colors, all lined up
+source                  ~/.mutt/macros          # All the macros, all lined up
+source                  ~/.mutt/bindings        # All the bindings, all lined up
+source                  ~/.mutt/gpg             # GPG settings in a separate file
+source                  ~/.mutt/folder-hooks    # Define folder-hooks
+source                  ~/.mutt/auto_views      # Define auto_views
+source                  ~/.mutt/mailboxes       # Go here to get the list of mailboxes
