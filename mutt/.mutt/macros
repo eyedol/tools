@@ -1,0 +1,33 @@
+macro index,pager a "<pipe-message>goobook add<return>" "add sender to google contacts"
+
+# Dealing with URLs
+macro index \cb |urlview\n 'call urlview to extract URLs out of a message'
+
+# Ctrl-R to mark all as read
+macro index \Cr \
+    "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" \
+    "mark all messages as read"
+
+# Sync email
+macro index O \
+    "<shell-escape>offlineimap<enter>" \
+    "run offlineimap to sync all mail"
+macro index o \
+    "<shell-escape>offlineimap -qf INBOX<enter>" \
+    "run offlineimap to sync inbox"
+
+macro index A  \
+    "<save-message>+/archive<enter>" \
+    "Archive conversation"
+
+macro index D \
+    "<save-message>+/trash<enter>" \
+    "move message to the trash"
+
+macro index S \
+    "<save-message>+/[Google Mail].Spam<enter>" \
+    "mark message as spam"
+
+# Hide / Unhide sidebar -----------------------------
+macro index b "<enter-command>toggle sidebar_visible<enter>" "hide sidebar"
+macro pager b "<enter-command>toggle sidebar_visible<enter>" "show sidebar"
