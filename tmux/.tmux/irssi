@@ -1,0 +1,3 @@
+new-window -n irssi irssi
+split-window -h -p 10 -t 0 '/bin/cat ~/.irssi/nicklistfifo'
+select-pane -t 0

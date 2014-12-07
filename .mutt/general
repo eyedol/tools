@@ -1,0 +1,135 @@
+# Credentials ---------------------------------
+# For use with "plain" IMAP synchronisation
+#set imap_user       = "some.guy@gmail.com"
+#set imap_pass       = "some.password"
+#set smtp_url        = "smtp://some.guy@smtp.gmail.com:587/"
+#set smtp_pass       = "some.password"
+#set imap_keepalive = 900
+
+# How often should mutt check for new mail? ----
+set mail_check      = 0
+
+# Notify me of new mail ------------------------
+#set timeout        = 15
+#set imap_check_subscribed
+
+# GMail Folders --------------------------------
+# For use with "plain" IMAP synchronisation
+#set folder         = "imaps://imap.gmail.com:993"
+#set spoolfile      = "+INBOX"
+#set postponed      = "+Drafts"
+#set record         = "+Sent Mail"
+#set trash          = "+Bin"
+
+## General mutt settings file
+set realname        = "Some Guy"
+set charset         = "utf-8"
+
+# How often should mutt check for new mail? ----
+set mail_check=30000
+
+set folder = "~/.mail"
+set spoolfile       = "+INBOX"
+set mbox            = "+archive"
+set postponed       = "+drafts"
+set trash           = "+Trash"
+unset record          #= "+sent"
+
+# Aliases
+#set alias_file          = ~/.mutt/muttalias     # Go there for aliases
+#set reverse_alias                               # If alias exists, use it
+
+# Various settings
+set to_chars            = " +TCF "
+set copy                = no             # Do not copy sent mail.  Gmail smtp already does this.
+set wait_key            = no
+set delete
+set delete_untag                         # Untag msgs when marking them for deletion
+unset confirmappend
+set quit
+set nomove                               # Stop asking to "move read messages to mbox"! -
+set noautoedit
+set allow_8bit
+set auto_tag                             # If something is tagged run commands on all tagged msgs
+unset mark_old                           # Don't mark messages as old when I pass over them with the cursor
+set editor              = "nano +9"
+unset beep
+unset beep_new
+set read_inc            = 100            # Read counter ticks every 100 msgs.
+set write_inc           = 100            # Write counter ticks every 100 msgs.
+set fcc_clear                            # Keep fcc's clear of signatues and encryption.
+set copy                                 # Keep copies of outgoing mail...
+set auto_tag                             # in the index menu which affect a message will be applied to all tagged messages
+set history             = 200            # controls the size (in number of strings remembered) of the string history buffer.
+set mailcap_sanitize
+
+# View Options ------------------------------------
+set tilde                               # pad bottom blank lines when in page view
+set pager_index_lines   = 10            # Show 2 messages on either side of the message I'm reading.
+set pager_context       = 5             # Paging down a message leaves 5 lines of overlap, so you don't get lost.
+set pager_stop                          # don't go to next message automatically
+set menu_scroll                         # scroll in menus
+set arrow_cursor                        # Changes the `bar' cursor to an arrow.  Default is the bar.
+set indent_str          = "> "
+unset markers                           # no ugly plus signs
+set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order       text/enriched text/plain text/html        #In which order to show the body parts (I leave HTML for last)
+set resolve
+
+# Compose View Options -------------------------
+set envelope_from                        # which from?
+set edit_headers    = yes                # show headers when composing
+set fast_reply                           # skip to compose when replying
+unset reply_self
+set reply_to                             # reply to Reply to: field
+set askcc                                # ask for CC:
+set fcc_attach                           # save attachments with the body
+set mime_forward    = ask-no             # ask to forward attachments as part of body
+set mime_forward_rest                    # forwarding multiple attachments of a MIME message from the recvattach menu
+set forward_format  = "Fwd: %s"          # format of subject when forwarding
+set forward_decode                       # decode when forwarding
+set attribution     = "On %d, %n wrote:" # format of quoting header
+set reverse_name                         # reply as whomever it was to
+unset include                            # include message in replies
+set forward_quote                        # include message in forwards
+set postpone        = ask-yes            # controls whether or not messages are saved in the 'postponed'
+unset sig_dashes                         # dashes before sig
+
+# Index View Options -----------------------------
+set date_format         = "%m/%d"
+set index_format        = "[%Z]  %D  %-20.20F  %s"
+set sort                = threads                           # As in GMail
+set strict_threads      = "yes"
+set sort_browser        = "date"
+set sort_aux            = "reverse-last-date-received"      # As in GMail
+unset collapse_unread
+set sort_re
+set reply_regexp        = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set narrow_tree
+
+# Printing actions --------------------------------
+set print               = ask-yes                           # Ask if print
+set print_command       = "mutt-print %s"                   # Send your message to the line printer.
+
+# Spell Checking ----------------------------------
+set ispell              = "aspell -e -c"
+
+# Dealing with attachments -------------------------
+set implicit_autoview
+
+# Goobook https://pypi.python.org/pypi/goobook/ -----
+set query_command       = "goobook query '%s'"
+
+## SIDEBAR ## -----------------------------------------
+set sidebar_width       = 30
+set sidebar_visible     = no
+set sidebar_delim       = " |"
+set sidebar_sort        = no
+set status_chars        = " *%A"
+set status_format       = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?($
+
+# Headers Order ------------------------------------
+ignore *
+unignore From: Date: To: Cc: Reply-To: Subject:
+unhdr_order *
+hdr_order From: Date: To: Cc: Reply-To: Subject:

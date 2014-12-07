@@ -1,0 +1,3 @@
+folder-hook . 'macro pager d "<exit><delete-message>" "Delete the message"'
+folder-hook +INBOX 'macro index,pager y "<save-message>=archive<enter>" "Archive conversation"'
+folder-hook . "exec collapse-all"
