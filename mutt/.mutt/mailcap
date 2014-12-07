@@ -1,0 +1,62 @@
+# mailcap - MIME configuration file
+# [Comment-out next line so that we can use w3m even within X.]
+text/html;          mutt_chrome %s; test=RunningX
+text/html;          w3m %s; nametemplate=%s.html
+text/html;          w3m -dump %s; nametemplate=%s.html; copiousoutput
+
+# Add capability to edit attachments from the compose menu.
+#
+# Mutt can only edit attachments if they have a mailcap edit entry.
+# (This would be a good thing to fix.)  However, a mailcap entry
+# apparently must include the display function--it can't be defaulted.
+# The combination "cat; copiousoutput" comes close to the default in
+# that in invokes the default pager on the output of cat.  However,
+# there is apparently no way to specify the default editor--a shell
+# environment variable such as $VISUAL or $EDITOR is as close as we can
+# get.
+#
+text/*;                             cat; copiousoutput; edit=$VISUAL %s
+message/rfc822;                     cat; copiousoutput; edit=$VISUAL %s
+
+# The following Microsoft application MIME attachments are viewed from
+# the attachment menu using QuickView Plus for UNIX.
+#
+application/msword;                 mutt_bgrun antiword %s; test=RunningX
+application/msword;                 word2text %s; copiousoutput
+application/vnd.msword;             mutt_bgrun antiword %s; test=RunningX
+application/vnd.msword;             word2text %s; copiousoutput
+#
+application/excel;                  mutt_bgrun antiword %s; test=RunningX
+application/excel;                  excel2text %s; copiousoutput
+application/msexcel;                mutt_bgrun antiword %s; test=RunningX
+application/msexcel;                excel2text %s; copiousoutput
+application/vnd.ms-excel;           mutt_bgrun antiword %s; test=RunningX
+application/vnd.ms-excel;           excel2text %s; copiousoutput
+application/x-excel;                mutt_bgrun antiword %s; test=RunningX
+application/x-excel;                excel2text %s; copiousoutput
+application/x-msexcel;              mutt_bgrun antiword %s; test=RunningX
+application/x-msexcel;              excel2text %s; copiousoutput
+application/ms-Excel;               mutt_bgrun antiword %s; test=RunningX
+application/ms-Excel;               excel2text %s; copiousoutput
+#
+application/vnd.ms-powerpoint;      mutt_bgrun antiword %s; test=RunningX
+application/vnd.ms-powerpoint;      ppt2text %s; copiousoutput
+application/x-mspowerpoint;         mutt_bgrun antiword %s; test=RunningX
+application/x-mspowerpoint;         ppt2text %s; copiousoutput
+application/ppt;                    mutt_bgrun antiword %s; test=RunningX
+application/ppt;                    ppt2text %s; copiousoutput
+application/pdf;                    mutt_bgrun xpdf +useFrontEndProgram %s; test=RunningX
+application/pdf;                    pdftotext %s -; copiousoutput
+application/postscript;             mutt_bgrun ghostview %s; test=RunningX
+application/rtf;                    mutt_bgrun antiword %s; test=RunningX
+application/rtf;                    rtf2text %s; copiousoutput
+application/ms-tnef;                tnef -w %s
+#
+application/octet-stream;           mutt.octet.filter -x %s; test=RunningX
+application/octet-stream;           mutt.octet.filter -v %s
+application/octet-stream;           mutt.octet.filter %s; copiousoutput
+application/octet-stream;           mutt_octet_view -x %s; test=RunningX
+application/octet-stream;           mutt_octet_view -v %s
+application/octet-stream;           mutt_octet_view %s; copiousoutput
+#
+image/*;                            mutt_bgrun ristretto %s; test=RunningX
