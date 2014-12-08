@@ -15,11 +15,11 @@ set mail_check      = 0
 
 # GMail Folders --------------------------------
 # For use with "plain" IMAP synchronisation
-#set folder         = "imaps://imap.gmail.com:993"
-#set spoolfile      = "+INBOX"
-#set postponed      = "+Drafts"
-#set record         = "+Sent Mail"
-#set trash          = "+Bin"
+set folder         = "imaps://imap.gmail.com:993"
+set spoolfile      = "+INBOX"
+set postponed      = "+Drafts"
+set record         = "+Sent Mail"
+set trash          = "imaps://imap.gmail.com/[Gmail]/Trash"
 
 ## General mutt settings file
 set realname        = "Some Guy"
@@ -32,7 +32,6 @@ set folder = "~/.mail"
 set spoolfile       = "+INBOX"
 set mbox            = "+archive"
 set postponed       = "+drafts"
-set trash           = "+Trash"
 unset record          #= "+sent"
 
 # Aliases
@@ -52,7 +51,7 @@ set noautoedit
 set allow_8bit
 set auto_tag                             # If something is tagged run commands on all tagged msgs
 unset mark_old                           # Don't mark messages as old when I pass over them with the cursor
-set editor              = "nano +9"
+set editor              = "vim -c 'set spell spelllang=en'"
 unset beep
 unset beep_new
 set read_inc            = 100            # Read counter ticks every 100 msgs.
