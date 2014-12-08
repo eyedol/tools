@@ -4,7 +4,7 @@ push V
 set header_cache        = ~/.mutt/cache/headers
 set message_cachedir    = ~/.mutt/cache/bodies
 set certificate_file    = ~/.mutt/
-unset signature           = ~/.mutt/signature
+set signature         = ~/.mutt/signature
 set mailcap_path        = ~/.mutt/mailcap
 source                  ~/.mutt/general         # General settings
 source                  ~/.mutt/colors          # All the colors, all lined up
