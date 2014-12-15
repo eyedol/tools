@@ -1,14 +1,17 @@
 #!/bin/bash
-
+echo "Downloading mutt..."
 wget -q -O - https://bitbucket.org/mutt/mutt/downloads/mutt-1.5.23.tar.gz | tar xvfz -
 
 # Apply side bar patch
+echo "Applying side bar patch..."
 wget -q -O - http://lunar-linux.org/~tchan/mutt/patch-1.5.23.sidebar.20140412.txt | patch -p1
 
 # Apply trash patch
+echo "Applying trash patch..."
 wget -q -O - http://cedricduval.free.fr/mutt/patches/download/patch-1.5.5.1.cd.trash_folder.3.4 | patch -p1
 
 # Configure Mutt
+echo "Enabling needed options..."
 ./configure --prefix=/usr     \
             --sysconfdir=/etc \
             --with-docdir=/usr/share/doc/mutt-1.5.23 \
@@ -22,13 +25,19 @@ wget -q -O - http://cedricduval.free.fr/mutt/patches/download/patch-1.5.5.1.cd.t
             --enable-smtp         \
             --with-ssl         \
             --with-gnutls      \
-            --with-regex
+            --with-regex       \
+            --enable-gpgme     \
+            --with-ssl        \
+            --with-sasl
 
 
 # Build Mutt
+echo "Creating needed files for compilation..."
 touch configure.ac aclocal.m4 configure Makefile.am Makefile.in
 
+echo "Building..."
 make
 
 # Install Mutt
+echo "Installing..."
 sudo make install
