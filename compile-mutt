@@ -2,6 +2,8 @@
 echo "Downloading mutt..."
 wget -q -O - https://bitbucket.org/mutt/mutt/downloads/mutt-1.5.23.tar.gz | tar xvfz -
 
+pushd mutt-1.5.23 
+
 # Apply side bar patch
 echo "Applying side bar patch..."
 wget -q -O - http://lunar-linux.org/~tchan/mutt/patch-1.5.23.sidebar.20140412.txt | patch -p1
@@ -41,3 +43,6 @@ make
 # Install Mutt
 echo "Installing..."
 sudo make install
+
+popd
+echo "Done!"
