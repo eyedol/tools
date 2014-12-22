@@ -1,10 +1,10 @@
 # Credentials ---------------------------------
 # For use with "plain" IMAP synchronisation
-#set imap_user       = "some.guy@gmail.com"
-#set imap_pass       = "some.password"
-#set smtp_url        = "smtp://some.guy@smtp.gmail.com:587/"
-#set smtp_pass       = "some.password"
-#set imap_keepalive = 900
+set imap_user       = "some.email@gmail.com"
+set imap_pass       = "some.password"
+set smtp_url        = "smtp://some.guy@smtp.gmail.com:587/"
+set smtp_pass       = "some.password"
+set imap_keepalive = 900
 
 # How often should mutt check for new mail? ----
 set mail_check      = 0
@@ -16,27 +16,21 @@ set mail_check      = 0
 # GMail Folders --------------------------------
 # For use with "plain" IMAP synchronisation
 set folder         = "imaps://imap.gmail.com:993"
-set spoolfile      = "+INBOX"
-set postponed      = "+Drafts"
-set record         = "+Sent Mail"
-set trash          = "imaps://imap.gmail.com/[Gmail]/Trash"
+set spoolfile      = "imaps://imap.gmail.com:993/INBOX"
+set postponed      = "imaps://imap.gmail.com:993/[Gmail]/Drafts"
+set record         = "imaps://imap.gmail.com:993/[Gmail]/Sent Mail"
+set trash          = "imaps://imap.gmail.com:993/[Gmail]/Trash"
+set header_cache   ="~/.mutt/cache/headers"
+set message_cachedir="~/.mutt/cache/bodies"
+set certificate_file=~/.mutt/certificates
+
 
 ## General mutt settings file
-set realname        = "Some Guy"
+set realname        = "Henry Addo"
 set charset         = "utf-8"
 
 # How often should mutt check for new mail? ----
 set mail_check=30000
-
-set folder = "~/.mail"
-set spoolfile       = "+INBOX"
-set mbox            = "+archive"
-set postponed       = "+drafts"
-unset record          #= "+sent"
-
-# Aliases
-#set alias_file          = ~/.mutt/muttalias     # Go there for aliases
-#set reverse_alias                               # If alias exists, use it
 
 # Various settings
 set to_chars            = " +TCF "
