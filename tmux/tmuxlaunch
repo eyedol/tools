@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Start tmux with pre configured panes. To install
+# chmod u+x tmuxlaunch
+# Add it to your .zhrc file
+
+
+# Session name
+SESSION="work"
+
+# IRC nickname
+IRC_NICK=$USER
+
+tmux has-session -t $SESSION
+
+# If the session is already running, just attach to it.
+tmux has-session -t $SESSION
+if [ $? -eq 0 ]; then
+	echo "Session $SESSION already exists. Attaching."
+	sleep 1
+	tmux -2 attach -t $SESSION
+	exit 0;
+fi
+
+# Create a new session named $SESSION and detach from it.
+tmux -2 new-session -d -s $SESSION
+
+# Set a session with the layout below.
+# Window 0 logged into IRC
+# Window 1 launch htop
+# Window 2 change directory into workspace
+# Window 3 free shell
+
+# +--------------------+--------------------+
+# | 0: irc             | 2: htop            |
+# +--------------------+--------------------+
+# | 1: cd into Work    | 3: free shell      |
+# +--------------------+--------------------+
+
+tmux split-window -v -t 0
+tmux split-window -h -t 0
+tmux split-window -h -t 1
+
+tmux send-keys -t 0 "irssi" enter C-1
+tmux send-keys -t 1 "cd ~/Devel/Workspace" enter
+tmux send-keys -t 2 "htop" enter C-1
+
+tmux select-pane -t 1
+
+# Attach to session
+tmux -2 attach-session -t $SESSION
