@@ -14,17 +14,32 @@ EDITOR=vim
 VISUAL=$EDITOR
 export EDITOR VISUAL
 
+SMILE_PROMPT=":-) "
+
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Custom path
+
 export ANDROID_HOME=/opt/android-sdk/sdk
 
 export ARC_HOME=~/Devel/Workspace/arcanist/arcanist
 
-export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ARC_HOME/bin:$PATH
+export PIDCAT_HOME=~/Devel/Workspace/pidcat
+
+export SCREEN_FETCH=~/Devel/Workspace/screenFetch
+
+export MOZ_HOST_BIN=~/.mozbuild/host-utils-37.0a2.en-US.linux-x86_64
+
+export MACH_HOME=~/Devel/Workspace/mozilla-android/mozilla-central
+
+export DM_TRANS=adb
+
+export TMUX_HOME=~/Devel/Workspace/tools/tmux
+
+export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ARC_HOME/bin:$PIDCAT_HOME:$SCREEN_FETCH:$MACH_HOME:$DM_TRANS:$MOZ_HOST_BIN:$TMUX_HOME:$PATH
 
 
 # Use modern completion system
@@ -85,6 +100,7 @@ typeset -ag precmd_functions
 export base_right_prompt
 export right_prompt_end
 export git_repo
+export mercurial_repo
 
 function git_chpwd() {
     if [[ $(git status > /dev/null 2>&1; echo $?) -eq 0 ]]; then
@@ -108,7 +124,7 @@ function git_precmd() {
         clean=$(print $git_status | grep '^nothing to commit')
         git_branch=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
         git_branch_name="%{$fg[yellow]%}:$git_branch"
-        right_prompt=${base_right_prompt}${git_branch_name}
+	right_prompt=${base_right_prompt}${git_branch_name}
         if [[ -n $remote || -z $clean ]]; then
             right_prompt="${right_prompt}:"
             if [[ -n $remote ]]; then
@@ -125,12 +141,39 @@ function git_precmd() {
         fi
         PROMPT="${right_prompt}${right_prompt_end}"
     else
-        PROMPT=":-) "
+        PROMPT=$SMILE_PROMPT
 
     fi
 }
 
 precmd_functions+='git_precmd'
+
+function hg_chpwd() {
+    if [[ $(hg root > /dev/null 2>&1; echo $?) -eq 0 ]]; then
+
+        base_right_prompt="[%{$fg[blue]%}hg"
+        right_prompt_end="%{$reset_color%}]☿ "
+        mercurial_repo=1
+    else
+        base_right_prompt=''
+        mercurial_repo=0
+    fi
+}
+
+chpwd_functions+='hg_chpwd'
+
+function hg_prompt() {
+    hg_prompt_info=$(hg prompt ":{branch}{status}{update}" 2>/dev/null)
+    hg_prompt_info_bg="%{$fg[yellow]%}:$hg_prompt_info"
+    if [[ $(hg root > /dev/null 2>&1; echo $?) -eq 0 ]]; then
+        right_prompt=${base_right_prompt}${hg_prompt_info_bg}
+        PROMPT="${right_prompt}${right_prompt_end}"
+    else
+        PROMPT=$SMILE_PROMPT
+    fi
+}
+
+precmd_functions+='hg_prompt'
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -149,3 +192,5 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+
