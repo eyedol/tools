@@ -102,21 +102,28 @@ export right_prompt_end
 export git_repo
 export mercurial_repo
 
-function git_chpwd() {
+function repo_chpwd() {
     if [[ $(git status > /dev/null 2>&1; echo $?) -eq 0 ]]; then
-
         base_right_prompt="[%{$fg[blue]%}git"
         right_prompt_end="%{$reset_color%}]± "
         git_repo=1
+    
+    elif [[ $(hg root > /dev/null 2>&1; echo $?) -eq 0 ]]; then
+        base_right_prompt="[%{$fg[blue]%}hg"
+        right_prompt_end="%{$reset_color%}]☿ "
+        mercurial_repo=1
+
     else
         base_right_prompt=''
+        mercurial_repo=0
         git_repo=0
     fi
+
 }
 
-chpwd_functions+='git_chpwd'
+chpwd_functions=('repo_chpwd')
 
-function git_precmd() {
+function repo_precmd() {
     if [[ $git_repo -eq 1 ]]; then
         git_status=$(git status)
         remote=$(print $git_status | grep 'Your branch is ahead')
@@ -124,7 +131,7 @@ function git_precmd() {
         clean=$(print $git_status | grep '^nothing to commit')
         git_branch=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
         git_branch_name="%{$fg[yellow]%}:$git_branch"
-	right_prompt=${base_right_prompt}${git_branch_name}
+	    right_prompt=${base_right_prompt}${git_branch_name}
         if [[ -n $remote || -z $clean ]]; then
             right_prompt="${right_prompt}:"
             if [[ -n $remote ]]; then
@@ -139,33 +146,12 @@ function git_precmd() {
                 right_prompt="${right_prompt}%{$fg[cyan]%}C"
             fi
         fi
+
         PROMPT="${right_prompt}${right_prompt_end}"
-    else
-        PROMPT=$SMILE_PROMPT
 
-    fi
-}
-
-precmd_functions+='git_precmd'
-
-function hg_chpwd() {
-    if [[ $(hg root > /dev/null 2>&1; echo $?) -eq 0 ]]; then
-
-        base_right_prompt="[%{$fg[blue]%}hg"
-        right_prompt_end="%{$reset_color%}]☿ "
-        mercurial_repo=1
-    else
-        base_right_prompt=''
-        mercurial_repo=0
-    fi
-}
-
-chpwd_functions+='hg_chpwd'
-
-function hg_prompt() {
-    hg_prompt_info=$(hg prompt ":{branch}{status}{update}" 2>/dev/null)
-    hg_prompt_info_bg="%{$fg[yellow]%}:$hg_prompt_info"
-    if [[ $(hg root > /dev/null 2>&1; echo $?) -eq 0 ]]; then
+    elif [[ $mercurial_repo -eq 1 ]]; then
+        hg_prompt_info=$(hg prompt ":{branch}{status}{update}" 2>/dev/null)
+        hg_prompt_info_bg="%{$fg[yellow]%}$hg_prompt_info"
         right_prompt=${base_right_prompt}${hg_prompt_info_bg}
         PROMPT="${right_prompt}${right_prompt_end}"
     else
@@ -173,14 +159,14 @@ function hg_prompt() {
     fi
 }
 
-precmd_functions+='hg_prompt'
+precmd_functions=('repo_precmd')
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
+eval   "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -189,8 +175,6 @@ zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
-
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
 
