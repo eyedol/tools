@@ -6,4 +6,10 @@
 # Don't forget to change the destination path to match where you want 
 # to save the backup to.
 
-rsync -aP --exclude-from=/tmp/ignorelist /home/$USER/ /run/media/$USER/ext4-linux/home/
+DESTINATION="/run/media/$USER/ext4-linux/home/"
+
+echo "backing up $USER directory..."
+rsync -aP --exclude-from=/tmp/ignorelist /home/$USER/ $DESTINATION
+
+echo "backing up /opt/ directory..."
+rsync -aP --exclude-from=/tmp/ignorelist /opt/ $DESTINATION
