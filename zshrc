@@ -150,7 +150,7 @@ function repo_precmd() {
         PROMPT="${right_prompt}${right_prompt_end}"
 
     elif [[ $mercurial_repo -eq 1 ]]; then
-        hg_prompt_info=$(hg prompt ":{branch}{status}{update}" 2>/dev/null)
+        hg_prompt_info=$(hg prompt ":{bookmark}{status}{update}" 2>/dev/null)
         hg_prompt_info_bg="%{$fg[yellow]%}$hg_prompt_info"
         right_prompt=${base_right_prompt}${hg_prompt_info_bg}
         PROMPT="${right_prompt}${right_prompt_end}"
@@ -177,4 +177,5 @@ zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
 
