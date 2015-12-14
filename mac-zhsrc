@@ -74,7 +74,8 @@ export HOMEBREW_GITHUB_API_TOKEN=8098d5ff0b50815915f41e83d35ff5d716537f5c
 export ANDROID_HOME=~/Library/Android/sdk
 export TMUX_HOME=~/Devel/Workspace/tools/tmux
 export GO_HOME=/usr/local/opt/go/libexec/bin
-export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$TMUX_HOME:$GO_HOME:$PATH
+export RBENV_ROOT=/usr/local/var/rbenv
+export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$TMUX_HOME:$GO_HOME:$RBENV_ROOT:$PATH
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -112,6 +113,7 @@ alias ll='ls -lh'
 alias lh='ls -A'
 
 # few alias for the git repo
+alias moto360='adb forward tcp:4444 localabstract:/adb-hub && adb connect localhost:4444'
 alias gst='git status'
 alias gb='git branch'
 alias gcp='git cherry-pick'
@@ -124,3 +126,4 @@ alias gbc='git checkout -b'
 alias gbs='git show-branch'
 alias gbS='git show-branch -a'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%Creset %s %Cgreen(%cr) %C(yellow)%d%Creset' --abbrev-commit --date=relative"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
