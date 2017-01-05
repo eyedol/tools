@@ -129,4 +129,4 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%C
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # added by travis gem
-[ -f /Users/eyedol/.travis/travis.sh ] && source /Users/eyedol/.travis/travis.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
