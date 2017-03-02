@@ -8,9 +8,6 @@
 # Session name
 SESSION="work"
 
-# IRC nickname
-IRC_NICK=$USER
-
 tmux has-session -t $SESSION
 
 # If the session is already running, just attach to it.
@@ -26,13 +23,13 @@ fi
 tmux -2 new-session -d -s $SESSION
 
 # Set a session with the layout below.
-# Window 0 logged into IRC
+# Window 0 launch haxor-news
 # Window 1 launch htop
 # Window 2 change directory into workspace
 # Window 3 free shell
 
 # +--------------------+--------------------+
-# | 0: irc             | 1: htop            |
+# | 0: haxor-news             | 1: htop     |
 # +--------------------+--------------------+
 # | 2: cd into Work    | 3: free shell      |
 # +--------------------+--------------------+
@@ -41,7 +38,7 @@ tmux split-window -v -t 0
 tmux split-window -h -t 0
 tmux split-window -h -t 2
 
-tmux send-keys -t 0 "irssi" enter C-1
+tmux send-keys -t 0 "haxor-news" enter C-1
 tmux send-keys -t 1 "htop" enter C-1
 tmux send-keys -t 2 "cd ~/Devel/Workspace" enter
 
