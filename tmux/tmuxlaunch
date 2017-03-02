@@ -32,20 +32,20 @@ tmux -2 new-session -d -s $SESSION
 # Window 3 free shell
 
 # +--------------------+--------------------+
-# | 0: irc             | 2: htop            |
+# | 0: irc             | 1: htop            |
 # +--------------------+--------------------+
-# | 1: cd into Work    | 3: free shell      |
+# | 2: cd into Work    | 3: free shell      |
 # +--------------------+--------------------+
 
 tmux split-window -v -t 0
 tmux split-window -h -t 0
-tmux split-window -h -t 1
+tmux split-window -h -t 2
 
 tmux send-keys -t 0 "irssi" enter C-1
-tmux send-keys -t 1 "cd ~/Devel/Workspace" enter
-tmux send-keys -t 2 "htop" enter C-1
+tmux send-keys -t 1 "htop" enter C-1
+tmux send-keys -t 2 "cd ~/Devel/Workspace" enter
 
-tmux select-pane -t 1
+tmux select-pane -t 2
 
 # Attach to session
 tmux -2 attach-session -t $SESSION
