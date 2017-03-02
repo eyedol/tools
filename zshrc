@@ -10,10 +10,7 @@ autoload colors
 colors
 
 #Set editor to use by default
-EDITOR=vim
-if has("nvim")
-  EDITOR=nvim
-endif
+EDITOR=nvim
 VISUAL=$EDITOR
 export EDITOR VISUAL
 
