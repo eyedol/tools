@@ -134,7 +134,7 @@ function repo_precmd() {
         clean=$(print $git_status | grep '^nothing to commit')
         git_branch=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
         git_branch_name="%{$fg[yellow]%}:$git_branch"
-	    right_prompt=${base_right_prompt}${git_branch_name}
+        right_prompt=${base_right_prompt}${git_branch_name}
         if [[ -n $remote || -z $clean ]]; then
             right_prompt="${right_prompt}:"
             if [[ -n $remote ]]; then

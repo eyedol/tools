@@ -67,10 +67,7 @@ plugins=(git git-extra git-flow brew github osx)
 source $ZSH/oh-my-zsh.sh
 
 #Set editor to use by default
-EDITOR=vim
-if has("nvim")
-  EDITOR=nvim
-endif
+EDITOR=nvim
 VISUAL=$EDITOR
 export EDITOR VISUAL
 export HOMEBREW_GITHUB_API_TOKEN=8098d5ff0b50815915f41e83d35ff5d716537f5c
