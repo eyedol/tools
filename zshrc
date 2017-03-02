@@ -11,6 +11,9 @@ colors
 
 #Set editor to use by default
 EDITOR=vim
+if has("nvim")
+  EDITOR=nvim
+endif
 VISUAL=$EDITOR
 export EDITOR VISUAL
 
@@ -177,5 +180,4 @@ zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
 

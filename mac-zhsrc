@@ -68,6 +68,9 @@ source $ZSH/oh-my-zsh.sh
 
 #Set editor to use by default
 EDITOR=vim
+if has("nvim")
+  EDITOR=nvim
+endif
 VISUAL=$EDITOR
 export EDITOR VISUAL
 export HOMEBREW_GITHUB_API_TOKEN=8098d5ff0b50815915f41e83d35ff5d716537f5c
@@ -82,13 +85,6 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
-else
-   export EDITOR='vim'
-fi
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
