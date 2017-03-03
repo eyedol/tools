@@ -12,6 +12,8 @@
   set smartindent        " Make smart indentations.
   set ttimeout
   set ttimeoutlen=100
+  set mouse=
+  set clipboard+=unnamedplus
 " }
 
 " Search {
