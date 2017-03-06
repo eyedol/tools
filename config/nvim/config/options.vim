@@ -5,7 +5,6 @@
 " Setup:         ln -s tools/config/nvim/config/options.vimrc ~/.config/nvim/config/options.vimrc
 " Last Modified: 01-03-2017 11:50:43 JST
 "
-
  let mapleader="\<SPACE>" " Map the leader key to ,
 
 " General {
