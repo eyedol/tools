@@ -75,7 +75,8 @@ export ANDROID_HOME=~/Library/Android/sdk
 export TMUX_HOME=~/Devel/Workspace/tools/tmux
 export GO_HOME=/usr/local/opt/go/libexec/bin
 export RBENV_ROOT=/usr/local/var/rbenv
-export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$TMUX_HOME:$GO_HOME:$RBENV_ROOT:$PATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$TMUX_HOME:$GO_HOME:$RBENV_ROOT:$PATH
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
