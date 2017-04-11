@@ -1,0 +1,55 @@
+[user]
+  email = addhen@linuxmail.org
+  name = Henry Addo
+
+[alias]
+  prune = fetch --prune
+  # Because I constantly forget how to do this
+  # https://git-scm.com/docs/git-fetch#git-fetch--p
+
+  undo = reset --soft HEAD^
+  # Not quite as common as an amend, but still common
+  # https://git-scm.com/docs/git-reset#git-reset-emgitresetemltmodegtltcommitgt
+
+  stash-all = stash save --include-untracked
+  # We wanna grab those pesky un-added files!
+  # https://git-scm.com/docs/git-stash
+
+[merge]
+  # I pretty much never mean to do a real merge, since I use a rebase workflow.
+  # Note: this global option applies to all merges, including those done during a git pull
+ # https://git-scm.com/docs/git-config#git-config-mergeff
+  ff = only
+
+[commit]
+  # https://git-scm.com/docs/git-config#git-config-commitgpgSign
+  gpgSign = true
+
+[push]
+  # https://git-scm.com/docs/git-config#git-config-pushdefault
+  default = simple
+  
+  # https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
+  followTags = true
+
+[status]
+  # https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
+  showUntrackedFiles = all
+
+[diff]
+  # Tool for displaying diffs
+  tool = icdiff
+[difftool]
+  prompt = false
+
+[difftool "icdiff"]
+  cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
+
+[core]
+  excludesfile = /Users/eyedol/.gitignore_global
+
