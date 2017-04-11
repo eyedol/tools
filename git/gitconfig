@@ -1,6 +1,7 @@
 [user]
-  email = addhen@linuxmail.org
+	email = henry@addhen.org
   name = Henry Addo
+	signingkey = BC289F6B
 
 [alias]
   prune = fetch --prune
@@ -53,3 +54,8 @@
 [core]
   excludesfile = /Users/eyedol/.gitignore_global
 
+[gpg]
+# On mac use gpg2 as it's what's installed via homebrew
+	program = gpg
+[tag]
+	gpgsign = true
