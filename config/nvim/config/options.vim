@@ -61,6 +61,9 @@
   " trailing whitespace, and end-of-lines. VERY useful!
   set listchars=tab:»-,trail:.,extends:>,precedes:<,nbsp:+
   set list                    " Show problematic characters.
+  " Highlight text which exceed the 80 column width
+  au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 " }
 "
 " Configuration {
