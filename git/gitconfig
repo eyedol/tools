@@ -1,7 +1,7 @@
 [user]
   email = henry@addhen.org
   name = Henry Addo
-  signingkey = BC289F6B
+  #signingkey = BC289F6B
 
 [alias]
   prune = fetch --prune
@@ -24,7 +24,7 @@
 
 [commit]
   # https://git-scm.com/docs/git-config#git-config-commitgpgSign
-  gpgSign = true
+  #gpgSign = true
 
 [push]
   # https://git-scm.com/docs/git-config#git-config-pushdefault

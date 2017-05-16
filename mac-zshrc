@@ -70,7 +70,7 @@ source $ZSH/oh-my-zsh.sh
 EDITOR=nvim
 VISUAL=$EDITOR
 export EDITOR VISUAL
-export HOMEBREW_GITHUB_API_TOKEN=8098d5ff0b50815915f41e83d35ff5d716537f5c
+export HOMEBREW_GITHUB_API_TOKEN=027bd8b8f24299e032b316cf12a1914f235f0c51
 export ANDROID_HOME=~/Library/Android/sdk
 export TMUX_HOME=~/Devel/Workspace/tools/tmux
 export GO_HOME=/usr/local/opt/go/libexec/bin

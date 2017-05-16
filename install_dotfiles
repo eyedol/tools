@@ -1,0 +1,72 @@
+#!/bin/bash
+#
+# Setup up dotfiles
+set -eu
+
+make_workspace_dir() {
+  local workspace=~/Devel/Workspace
+  if [ ! -d "$workspace" ]; then
+    mkdir -p "$workspace"
+    echo "Creating workspace directory done"
+  fi 
+}
+
+# Checks if a particular program is installed on the machine
+exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+is_homebrew_installed() {
+  if ! exists brew; then
+    echo "Please make sure homebrew and brew-cask are installed on the machine"
+    echo "See: https://brew.sh/"
+    echo "See: https://caskroom.github.io/"
+    exit 1
+  fi
+}
+
+install_zshrc() {
+  local zshrc_file=~/.zshrc
+  if [ ! -h "$zshrc_file" ]; then
+    ln -s "$PWD"/mac-zshrc "$zshrc_file"
+    echo "zshrc file successfully installed"
+  fi
+  # install oh-my-zsh
+  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+}
+
+#is_haxornews_installed() {
+#}
+
+install_htop() {
+  local $htop_rc=~/.htoprc
+  # Install htop if it doesn't exists
+  if ! exists htop; then
+    brew install htop
+  fi
+  # Install htoprc file
+  if [ ! -h "$htop_rc" ]; then
+    ln -s "$PWD"/htop/htoprc "$htop_rc"
+  fi
+}
+
+#install_git() {
+#}
+
+#install_tmux() {
+#}
+
+#install_nvim() {
+#}
+
+#######################
+#    Main function    #
+#######################
+make_workspace_dir
+is_homebrew_installed
+install_zshrc
+#is_haxornews_installed
+#install_htop
+#install_git
+#install_tmux
+#install_nvim
