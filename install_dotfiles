@@ -7,13 +7,17 @@ make_workspace_dir() {
   local workspace=~/Devel/Workspace
   if [ ! -d "$workspace" ]; then
     mkdir -p "$workspace"
-    echo "Creating workspace directory done"
+    echo "Creating workspace directory done."
   fi 
 }
 
 # Checks if a particular program is installed on the machine
 exists() {
   command -v "$1" >/dev/null 2>&1
+}
+
+display_success_message() {
+  echo "$1 successfully installed."
 }
 
 is_homebrew_installed() {
@@ -27,46 +31,94 @@ is_homebrew_installed() {
 
 install_zshrc() {
   local zshrc_file=~/.zshrc
-  if [ ! -h "$zshrc_file" ]; then
-    ln -s "$PWD"/mac-zshrc "$zshrc_file"
-    echo "zshrc file successfully installed"
+  local oh_my_zsh=~/.oh-my-zsh/
+  if [ ! -d "$oh_my_zsh" ]; then
+     # install oh-my-zsh
+     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+     display_success_message "oh_my_zsh"
   fi
-  # install oh-my-zsh
-  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  # Delete any installed zshrc file
+  if [ -f "$zshrc_file" ] || [ -L "$zshrc_file" ]; then
+    rm -f $zshrc_file
+  fi
+  ln -s "$PWD"/mac-zshrc "$zshrc_file"
+  #source "$zshrc_file" 
+  display_success_message "$zshrc_file"
 }
 
 #is_haxornews_installed() {
 #}
 
 install_htop() {
-  local $htop_rc=~/.htoprc
+  local htop_rc=~/.htoprc
   # Install htop if it doesn't exists
   if ! exists htop; then
     brew install htop
   fi
-  # Install htoprc file
-  if [ ! -h "$htop_rc" ]; then
-    ln -s "$PWD"/htop/htoprc "$htop_rc"
+  # Delete any installed htop_rc file
+  if [ -f "$htop_rc" ] || [ -L "$htop_rc" ]; then
+    rm -f "$htop_rc"
   fi
+  ln -s "$PWD"/htop/htoprc "$htop_rc"
 }
 
-#install_git() {
-#}
+install_git() {
+  local htop_rc=~/.htoprc
+  # Install htop if it doesn't exists
+  if ! exists htop; then
+    brew install htop
+  fi
+  # Delete any installed htop_rc file
+  if [ -f "$htop_rc" ] || [ -L "$htop_rc" ]; then
+    rm -f "$htop_rc"
+  fi
+  ln -s "$PWD"/htop/htoprc "$htop_rc"
+}
 
-#install_tmux() {
-#}
+install_tmux() {
+  local tmux_conf=~/.tmux.conf
+  local tmux_dir=~/.tmux
+  # Install htop if it doesn't exists
+  if ! exists tmux; then
+    brew install tmux
+  fi
+  # Delete any installed tmux.conf file
+  if [ -f "$tmux_conf" ] || [ -L "$tmux_conf" ]; then
+    rm -f "$tmux_conf"
+  fi
+  ln -s "$PWD"/tmux/.tmux.conf "$tmux_conf"
+  display_success_message "$tmux_conf"
+  if [ -d "$tmux_dir" ] || [ -L "$tmux_dir" ]; then
+    rm -rf "$tmux_dir"
+  fi
+  ln -s "$PWD"/tmux/.tmux "$tmux_dir"
+  display_success_message "$tmux_dir"
+}
 
-#install_nvim() {
-#}
+install_nvim() {
+  local nvim_dir=~/.config/nvim
+  # Install nvim if it doesn't exists
+  if ! exists nvim; then
+    brew install nvim
+  fi
+  # Delete any installed nvim directory
+  if [ -d "$nvim_dir" ] || [ -L "$nvim_dir" ]; then
+    rm -rf "$nvim_dir"
+  fi
+  pushd "${PWD}/config/nvim"
+  ./install.sh
+  popd
+  display_success_message "$nvim_dir"
+}
 
 #######################
 #    Main function    #
 #######################
 make_workspace_dir
 is_homebrew_installed
-install_zshrc
+#install_zshrc
 #is_haxornews_installed
 #install_htop
 #install_git
-#install_tmux
+install_tmux
 #install_nvim
