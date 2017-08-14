@@ -73,10 +73,12 @@ export EDITOR VISUAL
 export HOMEBREW_GITHUB_API_TOKEN=027bd8b8f24299e032b316cf12a1914f235f0c51
 export ANDROID_HOME=~/Library/Android/sdk
 export TMUX_HOME=~/Devel/Workspace/tools/tmux
-export GO_HOME=/usr/local/opt/go/libexec/bin
+export GOPATH=/usr/local/opt/go/libexec/bin
 export RBENV_ROOT=/usr/local/var/rbenv
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdkjdk/Contents/Home
-export PATH=$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$TMUX_HOME:$GO_HOME:$RBENV_ROOT:$PATH
+export HF_HOME=/opt/hellofresh/bin
+export FASTLANE_HOME="$HOME/.fastlane/bin"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$TMUX_HOME:$GOPATH:$RBENV_ROOT:$HF_HOME:$FASTLANE_HOME:$PATH
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -137,3 +139,5 @@ fi
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

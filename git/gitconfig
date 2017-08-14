@@ -39,12 +39,21 @@
 
 [diff]
   # Tool for displaying diffs
-  tool = icdiff
+  tool = meld
 [difftool]
   prompt = false
 
-[difftool "icdiff"]
-  cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+[difftool "meld"]
+  trustExitCode = true
+  cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
+
+[merge]
+  tool = meld
+[mergetool]
+  prompt = false
+[mergetool "meld"]
+  trustExitCode = true
+  cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
 
 [filter "lfs"]
   clean = git-lfs clean %f
@@ -52,10 +61,14 @@
   required = true
 
 [core]
-  excludesfile = /Users/eyedol/.gitignore_global
+	excludesfile = /Users/henry/.gitignore_global
 
 [gpg]
 # On mac use gpg2 as it's what's installed via homebrew
 	program = gpg
 [tag]
 	gpgsign = true
+[credential]
+	helper = osxkeychain
+[http "https://gopkg.in"]
+	followRedirects = true
