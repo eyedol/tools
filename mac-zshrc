@@ -81,7 +81,8 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Hom
 export JDK_16=/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 export JDK_17=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
 export JDK_18=$JAVA_HOME
-export PATH=$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$TMUX_HOME:$GOPATH:$RBuNV_ROOT:$HF_HOME:$FASTLANE_HOME:$JDK_16/bin:$JDK_17/bin:$JDK_18/bin:$PATH
+export FLUTTER_HOME=~/Devel/Workspace/flutter
+export PATH=$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$TMUX_HOME:$GOPATH:$RBuNV_ROOT:$HF_HOME:$FASTLANE_HOME:$JDK_16/bin:$JDK_17/bin:$JDK_18/bin:$FLUTTER_HOME/bin:$PATH
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
