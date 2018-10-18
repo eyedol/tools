@@ -60,7 +60,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extra git-flow brew github osx)
+plugins=(git git-extra git-flow brew github osx adb zsh_reload emoji tmux)
 
 # User configuration
 
@@ -145,3 +145,6 @@ fi
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# oh-my-zsh emojis
+PROMPT="$emoji[smiling_face_with_sunglasses] %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)"
