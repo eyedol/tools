@@ -147,7 +147,7 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # oh-my-zsh emojis
-local ret_status="%(?:%{$fg_bold[green]%}$emoji[smiling_face_with_sunglasses]:%{$fg_bold[red]%}$emoji[smiling_face_with_sunglasses])"
+local ret_status="%(?:%{$fg_bold[green]%}$emoji[smiling_face_with_sunglasses]:%{$fg_bold[red]%}$emoji[face_screaming_in_fear])"
 PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
