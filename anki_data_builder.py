@@ -21,7 +21,7 @@ class AnkiCardBuilder:
     self.__write_csv(data);
 
   def __write_csv(self, items):
-    with open(self.csv_output, 'w') as file:
+    with open(self.csv_output, 'w',encoding='utf-8') as file:
 
       c = csv.writer(file, delimiter='\t', lineterminator='\n')
       # Add '#' to first field, so Anki treats the line as a comment line.
