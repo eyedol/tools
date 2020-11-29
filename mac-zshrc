@@ -1,8 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-#autoload -Uz promptinit
-# promptinit
+#autoload -Uz promptinit promptinit
 
 autoload colors
 colors
@@ -60,7 +59,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extra git-flow brew github osx adb zsh_reload emoji tmux)
+plugins=(git git-flow brew github osx adb zsh_reload emoji tmux)
 
 # User configuration
 
@@ -77,12 +76,13 @@ export GOPATH=/usr/local/opt/go/libexec/bin
 export RBENV_ROOT=/usr/local/var/rbenv
 export HF_HOME=/opt/hellofresh/bin
 export FASTLANE_HOME="$HOME/.fastlane/bin"
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
+#export JAVA_HOME=/usr/bin/java
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/
 export JDK_16=/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 export JDK_17=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
-export JDK_18=$JAVA_HOME
+#export JDK_18=$JAVA_HOME
 export FLUTTER_HOME=~/Devel/Workspace/flutter
-export PATH=$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$TMUX_HOME:$GOPATH:$RBuNV_ROOT:$HF_HOME:$FASTLANE_HOME:$JDK_16/bin:$JDK_17/bin:$JDK_18/bin:$FLUTTER_HOME/bin:$PATH
+export PATH=$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$TMUX_HOME:$GOPATH:$RBuNV_ROOT:$HF_HOME:$FASTLANE_HOME:$JDK_16/bin:$JDK_17/bin:$FLUTTER_HOME/bin:$PATH
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -134,12 +134,12 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # gpg-agent or set up the GPG_AGENT_INFO variable if it's already running.
 
 # Add the following to your shell init to set up gpg-agent automatically for every shell
-if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
-    source ~/.gnupg/.gpg-agent-info
-    export GPG_AGENT_INFO
-else
-    eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
-fi
+#if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
+#    source ~/.gnupg/.gpg-agent-info
+#    export GPG_AGENT_INFO
+#else
+#    eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+#fi
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
@@ -156,3 +156,9 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
 #PROMPT="$emoji[smiling_face_with_sunglasses] ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/eyedol/.sdkman"
+[[ -s "/Users/eyedol/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/eyedol/.sdkman/bin/sdkman-init.sh"
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
