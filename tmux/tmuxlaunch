@@ -23,17 +23,17 @@ tmux -2 new-session -d -s $SESSION
 # Window 2 change directory into workspace
 # Window 3 free shell
 
-# +--------------------+--------------------+
-# | 0: haxor-news             | 1: htop     |
-# +--------------------+--------------------+
-# | 2: cd into Work    | 3: free shell      |
-# +--------------------+--------------------+
+# +----------------------+---------------------------+
+# | 0: cd into Workspace | 1: htop                   |
+# +----------------------+---------------------------+
+# | 2: cd into Workspace | 3: free shell             |
+# +----------------------+---------------------------+
 
 tmux split-window -v -t 0
 tmux split-window -h -t 0
 tmux split-window -h -t 2
 
-tmux send-keys -t 0 "~/Devel/Workspace && clear" Enter
+tmux send-keys -t 0 "~/Devel/ && clear" Enter
 tmux send-keys -t 1 "htop" Enter
 tmux send-keys -t 2 "cd ~/Devel/Workspace && clear" Enter
 
