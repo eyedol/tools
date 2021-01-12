@@ -3,7 +3,7 @@ What is Hamming Code?	In telecommunication, Hamming codes are a family of linear
 What is the square root of 256?	16
 2^16	65,536
 Using bitwise operations, how would you test that a number is a power of 2?	bool isPowerOfTwo = (x & (x - 1);
-What does ELF stand for?	"Executable and Linkable Format.
+What does ELF stand for?	Executable and Linkable Format.
 It's a common standard file format for executables, object code, shared libraries, and core dumps."
 example of a latency device	CPU core
 example of a throughput device	GPU core
