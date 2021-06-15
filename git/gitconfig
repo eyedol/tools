@@ -1,7 +1,7 @@
 [user]
   email = henry@addhen.org
   name = Henry Addo
-  #signingkey = BC289F6B
+  #signingkey = 19B0B16EBC289F6B
 
 [alias]
   prune = fetch --prune
