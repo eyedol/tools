@@ -158,7 +158,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 #PROMPT="$emoji[smiling_face_with_sunglasses] ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/eyedol/.sdkman"
-[[ -s "/Users/eyedol/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/eyedol/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
