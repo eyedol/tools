@@ -59,7 +59,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow brew github osx adb zsh_reload emoji tmux)
+plugins=(git git-flow brew github macos adb zsh_reload emoji tmux)
 
 # User configuration
 
@@ -69,14 +69,14 @@ source $ZSH/oh-my-zsh.sh
 EDITOR=nvim
 VISUAL=$EDITOR
 export EDITOR VISUAL
-export HOMEBREW_GITHUB_API_TOKEN=027bd8b8f24299e032b316cf12a1914f235f0c51
+export HOMEBREW_GITHUB_API_TOKEN=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
+export GITHUB_TOKEN=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
 export ANDROID_HOME=~/Library/Android/sdk
 export TMUX_HOME=~/Devel/Workspace/tools/tmux
 export GOPATH=/usr/local/opt/go/libexec/bin
 export RBENV_ROOT=/usr/local/var/rbenv
-export HF_HOME=/opt/hellofresh/bin
+export TRANSIFEX_TOKEN=1/ab07814ecccf97ea688c625d346d7d0ef5fa03ae
 export FASTLANE_HOME="$HOME/.fastlane/bin"
-#export JAVA_HOME=/usr/bin/java
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/
 export JDK_16=/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
 export JDK_17=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
@@ -85,7 +85,6 @@ export FLUTTER_HOME=~/Devel/Workspace/flutter
 export PATH=$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$TMUX_HOME:$GOPATH:$RBuNV_ROOT:$HF_HOME:$FASTLANE_HOME:$JDK_16/bin:$JDK_17/bin:$FLUTTER_HOME/bin:$PATH
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -162,3 +161,8 @@ export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"
+alias jenv_set_java_home='export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"'
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+chruby ruby-3.2.1
