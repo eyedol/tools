@@ -69,13 +69,13 @@ source $ZSH/oh-my-zsh.sh
 EDITOR=nvim
 VISUAL=$EDITOR
 export EDITOR VISUAL
-export HOMEBREW_GITHUB_API_TOKEN=TOKEN
-export GITHUB_TOKEN=TOKEN
+export HOMEBREW_GITHUB_API_TOKEN=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
+export GITHUB_TOKEN=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
 export ANDROID_HOME=~/Library/Android/sdk
 export TMUX_HOME=~/Devel/Workspace/tools/tmux
 export GOPATH=/usr/local/opt/go/libexec/bin
 export RBENV_ROOT=/usr/local/var/rbenv
-export TRANSIFEX_TOKEN=TOKEN
+export TRANSIFEX_TOKEN=1/ab07814ecccf97ea688c625d346d7d0ef5fa03ae
 export FASTLANE_HOME="$HOME/.fastlane/bin"
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/
 export JDK_16=/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
