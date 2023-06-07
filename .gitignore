@@ -2,3 +2,4 @@ config/nvim/autoload/*
 config/nvim/undodir/
 config/nvim/plugged/*
 .nvimlog
+Work.Brewfile.*
