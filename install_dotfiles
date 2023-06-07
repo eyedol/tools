@@ -3,6 +3,8 @@
 # Setup up dotfiles
 set -eu
 
+os="mac"
+
 make_workspace_dir() {
   local workspace=~/Devel/Workspace
   if [ ! -d "$workspace" ]; then
@@ -111,14 +113,74 @@ install_nvim() {
   display_success_message "$nvim_dir"
 }
 
+help() {
+  # Display Help
+  echo "Exports existing computer's configs and homebrew installs. Also can be used to import existing computer"
+  echo
+  echo "Syntax: install.sh [-p|h|v]"
+  echo "options:"
+  echo "p     The operating system to port to. Valid values are mac, linux"
+  echo "h     Print this Help."
+  echo "v     Print version and exit."
+  echo
+}
+
+version() {
+  echo "v1.0.0"
+}
+
+mac_install() {
+  echo "Restoring a mac install"
+  make_workspace_dir
+  is_homebrew_installed
+  install_zshrc
+  install_htop
+  install_git
+  install_tmux
+  install_nvim
+  echo "Done"
+}
+
+linux_install() {
+  echo "Restoring a linux install"
+  make_workspace_dir
+  install_zshrc
+  install_htop
+  install_git
+  install_tmux
+  install_nvim
+  echo "Done"
+}
+
 #######################
 #    Main function    #
 #######################
-make_workspace_dir
-is_homebrew_installed
-#install_zshrc
-#is_haxornews_installed
-#install_htop
-#install_git
-install_tmux
-#install_nvim
+#######################
+#    Process options  #
+#######################
+
+# Get the options
+# Credits: https://www.redhat.com/sysadmin/arguments-options-bash-scripts
+while getopts ":hp:" option; do
+   case $option in
+      h) # Display help
+         help
+         exit;;
+      p) # Enter operating system
+         os=$OPTARG;;
+      \?) # Invalid option
+         echo "Error: Invalid option"
+         exit;;
+   esac
+done
+
+mac="mac"
+linux="linux"
+
+if  [[ "$os" == "$mac" ]]; then
+  mac_install
+elif  [[ "$os" == "$linux" ]]; then
+  linux_install
+else
+  echo "$os is an unsupported operating system. Supported ate $mac, $linux"
+fi
