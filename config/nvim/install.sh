@@ -44,10 +44,9 @@ if [ ! -e ~/.config/nvim/config/plugins.vim ]; then
 fi
 
 if [ ! -e "$SPELL" ]; then
-	echo "Creating spell directory..."
-	#mkdir -p $SPELL
-  	echo "Copying content of spell..."
-	cp -r "$PWD/spell/" "$SPELL"
+  echo "Creating spell directory..."
+  echo "Copying content of spell..."
+  cp -r "$PWD/spell/" "$SPELL"
 fi
 
 echo "Done!!!"

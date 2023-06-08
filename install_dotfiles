@@ -31,8 +31,9 @@ is_homebrew_installed() {
   fi
 }
 
-install_zshrc() {
+install_zsh_files() {
   local zshrc_file=~/.zshrc
+  local zshenv_file=~/.zshenv
   local oh_my_zsh=~/.oh-my-zsh/
   if [ ! -d "$oh_my_zsh" ]; then
      # install oh-my-zsh
@@ -43,6 +44,7 @@ install_zshrc() {
   if [ -f "$zshrc_file" ] || [ -L "$zshrc_file" ]; then
     rm -f $zshrc_file
   fi
+  ln -s "$PWD"/zshenv "$zshenv_file"
   ln -s "$PWD"/mac-zshrc "$zshrc_file"
   #source "$zshrc_file" 
   display_success_message "$zshrc_file"
@@ -133,7 +135,7 @@ mac_install() {
   echo "Restoring a mac install"
   make_workspace_dir
   is_homebrew_installed
-  install_zshrc
+  install_zsh_files
   install_htop
   install_git
   install_tmux
@@ -144,7 +146,7 @@ mac_install() {
 linux_install() {
   echo "Restoring a linux install"
   make_workspace_dir
-  install_zshrc
+  install_zsh_files
   install_htop
   install_git
   install_tmux

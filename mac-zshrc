@@ -65,36 +65,6 @@ plugins=(git git-flow brew github macos adb zsh_reload emoji tmux)
 
 source $ZSH/oh-my-zsh.sh
 
-#Set editor to use by default
-EDITOR=nvim
-VISUAL=$EDITOR
-export EDITOR VISUAL
-export HOMEBREW_GITHUB_API_TOKEN=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
-export GITHUB_TOKEN=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
-export ANDROID_HOME=~/Library/Android/sdk
-export TMUX_HOME=~/Devel/Workspace/tools/tmux
-export GOPATH=/usr/local/opt/go/libexec/bin
-export RBENV_ROOT=/usr/local/var/rbenv
-export TRANSIFEX_TOKEN=1/ab07814ecccf97ea688c625d346d7d0ef5fa03ae
-export FASTLANE_HOME="$HOME/.fastlane/bin"
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/
-export JDK_16=/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
-export JDK_17=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
-#export JDK_18=$JAVA_HOME
-export FLUTTER_HOME=~/Devel/Workspace/flutter
-export PATH=$JAVA_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$TMUX_HOME:$GOPATH:$RBuNV_ROOT:$HF_HOME:$FASTLANE_HOME:$JDK_16/bin:$JDK_17/bin:$FLUTTER_HOME/bin:$PATH
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/dsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
