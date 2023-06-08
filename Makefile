@@ -26,7 +26,7 @@ all:
 	@echo "* make portlinux -- to install dot files on a Linux machine"
 	@echo "* make portmac -- to install dot files on a Mac machine"
 	@echo "* make brewexport -- to export brew installs on Mac machine"
-	@echo "$ make brewimport -- to import brew install onto a Mac machine"
+	@echo "* make brewimport -- to import brew install onto a Mac machine"
 	@echo ""
 
 edit:
