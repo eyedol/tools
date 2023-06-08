@@ -1,2 +1,3 @@
+# Credits: https://buddy.works/guides/git-crypt
 .gitattributes !filter !diff
 zshenv filter=git-crypt diff=git-crypt
