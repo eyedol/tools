@@ -59,7 +59,19 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow brew github macos adb zsh_reload emoji tmux)
+# Add in alphabetical order
+plugins=(
+    adb
+    brew
+    chruby
+    emoji
+    git
+    git-flow
+    github
+    macos
+    tmux
+    zsh_reload
+)
 
 # User configuration
 
@@ -133,6 +145,4 @@ export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"
 alias jenv_set_java_home='export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"'
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
 chruby ruby-3.2.1
