@@ -71,7 +71,6 @@ plugins=(
     git-prompt
     macos
     tmux
-    zsh_reload
 )
 
 # User configuration
