@@ -67,16 +67,19 @@ install_htop() {
 }
 
 install_git() {
-  local htop_rc=~/.htoprc
-  # Install htop if it doesn't exists
-  if ! exists htop; then
-    brew install htop
+  local git_conf=~/.gitconfig
+
+  # Install git if it doesn't exists
+  if ! exists git; then
+    brew install git
   fi
-  # Delete any installed htop_rc file
-  if [ -f "$htop_rc" ] || [ -L "$htop_rc" ]; then
-    rm -f "$htop_rc"
+  # Delete any installed git directory
+  if [ -d "$git_conf" ] || [ -L "$git_conf" ]; then
+    rm -rf "$git_conf"
   fi
-  ln -s "$PWD"/htop/htoprc "$htop_rc"
+
+  ln -s "$PWD"/git/gitconfig "$git_conf"
+  display_success_message "$git_conf"
 }
 
 install_tmux() {
