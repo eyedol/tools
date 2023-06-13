@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # Via conduit patch a local repo with phabricator's diff
-# Normally you will run this a pre built step in Jenkins
+# Normally you will run this in a pre built step in Jenkins
 if [ ! -z "${DIFF_ID}" ]; then
     echo "## Getting base rev for diff"
     BASE_GIT_COMMIT=$(echo {\"diff_id\": ${DIFF_ID}} | arc call-conduit differential.getdiff | awk -v RS=',' -v FS=':'     '$1~/\"sourceControlBaseRevision\"/ {print $2}' | tr -d \")
