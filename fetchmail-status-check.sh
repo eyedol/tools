@@ -1,5 +1,5 @@
 #!/bin/sh
-##This scrit is to check fetchmail process if it's dead,run fetchmail
+##This script is to check fetchmail process if it's dead,run fetchmail
 # Put this in a crontab
 while true
 do

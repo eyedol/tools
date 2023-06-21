@@ -44,6 +44,11 @@ install_zsh_files() {
   if [ -f "$zshrc_file" ] || [ -L "$zshrc_file" ]; then
     rm -f $zshrc_file
   fi
+
+  # Delete any installed zshenv file
+  if [ -f "$zshenv_file" ] || [ -L "$zshenv_file" ]; then
+    rm -f $zshenv_file
+  fi
   ln -s "$PWD"/zshenv "$zshenv_file"
   ln -s "$PWD"/mac-zshrc "$zshrc_file"
   #source "$zshrc_file" 
