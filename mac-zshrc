@@ -73,6 +73,19 @@ plugins=(
     tmux
 )
 
+# pip should only run if there is a virtualenv currently activated
+export PIP_REQUIRE_VIRTUALENV=true
+# commands to override pip restriction above.
+# use `gpip` or `gpip3` to force installation of
+# a package in the global python environment
+# Never do this! It is just an escape hatch.
+gpip(){
+   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+gpip3(){
+   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+}
+
 # User configuration
 
 source $ZSH/oh-my-zsh.sh
@@ -137,10 +150,36 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
 #PROMPT="$emoji[smiling_face_with_sunglasses] ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)"
+ARCH="$(uname -m)"
+case ARCH in
+    i386)   ARCH="386" ;;
+    i686)   ARCH="386" ;;
+    x86_64) ARCH="amd64" ;;
+    arm)    dpkg --print-architecture | grep -q "arm64" && ARCH="arm64" || ARCH="arm" ;;
+esac
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+if [[ "${ARCH}"  == "arm64" ]]; then
+    PREFIX="/opt/homebrew"
+else
+    PREFIX="/usr/local"
+fi
+
+
+# https://github.com/pyenv/pyenv/issues/1768
+SDK_PATH="$(xcrun --show-sdk-path)"
+
+echo $PREFIX
+echo $SDK_PATH
+
+export CPATH="${SDK_PATH}/usr/include"
+export CFLAGS="-I${SDK_PATH}/usr/include/sasl $CFLAGS"
+export CFLAGS="-I${SDK_PATH}/usr/include $CFLAGS"
+export CFLAGS="-I${PREFIX}/include $CFLAGS"
+export LDFLAGS="-L${SDK_PATH}/usr/lib $LDFLAGS"
+export LDFLAGS="-L${PREFIX}/lib $LDFLAGS"
+export LDFLAGS="-L${PREFIX}/opt/openssl/lib $LDFLAGS"
+export CPPFLAGS="-I${PREFIX}/opt/openssl/include $CPPFLAGS"
+
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"
@@ -148,3 +187,6 @@ alias jenv_set_java_home='export JAVA_HOME="$HOME/.jenv/versions/`jenv version-n
 chruby ruby-3.2.1
 
 source ~/.config/broot/launcher/bash/br
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
