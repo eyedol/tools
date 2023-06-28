@@ -11,7 +11,7 @@ BREW = brew
 CP = cp
 
 MAC_INSTALL = ./install_dotfiles -p mac
-LINUX_INSTALL = ./install_dotfiles -p mac
+LINUX_INSTALL = ./install_dotfiles -p linux
 BREWFILE := ./Work.Brewfile
 DAY := $(shell date +"%H-%M-%S-%d-%m-%Y")
 BREWFILEBAK := $(BREWFILE).$(DAY)

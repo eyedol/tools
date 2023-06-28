@@ -73,19 +73,6 @@ plugins=(
     tmux
 )
 
-# pip should only run if there is a virtualenv currently activated
-export PIP_REQUIRE_VIRTUALENV=true
-# commands to override pip restriction above.
-# use `gpip` or `gpip3` to force installation of
-# a package in the global python environment
-# Never do this! It is just an escape hatch.
-gpip(){
-   PIP_REQUIRE_VIRTUALENV="" pip "$@"
-}
-gpip3(){
-   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
-}
-
 # User configuration
 
 source $ZSH/oh-my-zsh.sh
@@ -179,8 +166,7 @@ export LDFLAGS="-L${SDK_PATH}/usr/lib $LDFLAGS"
 export LDFLAGS="-L${PREFIX}/lib $LDFLAGS"
 export LDFLAGS="-L${PREFIX}/opt/openssl/lib $LDFLAGS"
 export CPPFLAGS="-I${PREFIX}/opt/openssl/include $CPPFLAGS"
-
-export PATH="$HOME/.jenv/bin:$PATH"
+export PATH="$HOME/.jenv/bin:$HOME/.local/bin:$PATH"
 eval "$(jenv init -)"
 export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"
 alias jenv_set_java_home='export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"'

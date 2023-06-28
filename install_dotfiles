@@ -4,6 +4,7 @@
 set -eu
 
 os="mac"
+mac="mac"
 
 make_workspace_dir() {
   local workspace=~/Devel/Workspace
@@ -61,7 +62,7 @@ install_zsh_files() {
 install_htop() {
   local htop_rc=~/.htoprc
   # Install htop if it doesn't exists
-  if ! exists htop; then
+  if ! exists htop && [ "$os" == "$mac" ] ; then
     brew install htop
   fi
   # Delete any installed htop_rc file
@@ -91,7 +92,7 @@ install_tmux() {
   local tmux_conf=~/.tmux.conf
   local tmux_dir=~/.tmux
   # Install htop if it doesn't exists
-  if ! exists tmux; then
+  if ! exists tmux && [ "$os" == "$mac" ];then
     brew install tmux
   fi
   # Delete any installed tmux.conf file
@@ -110,7 +111,7 @@ install_tmux() {
 install_nvim() {
   local nvim_dir=~/.config/nvim
   # Install nvim if it doesn't exists
-  if ! exists nvim; then
+  if ! exists nvim && [ "$os" == "$mac" ]; then
     brew install nvim
   fi
   # Delete any installed nvim directory
@@ -184,7 +185,6 @@ while getopts ":hp:" option; do
    esac
 done
 
-mac="mac"
 linux="linux"
 
 if  [[ "$os" == "$mac" ]]; then
@@ -192,5 +192,5 @@ if  [[ "$os" == "$mac" ]]; then
 elif  [[ "$os" == "$linux" ]]; then
   linux_install
 else
-  echo "$os is an unsupported operating system. Supported ate $mac, $linux"
+  echo "$os is an unsupported operating system. Supported os are $mac, $linux"
 fi
