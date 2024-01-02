@@ -137,6 +137,15 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
 #PROMPT="$emoji[smiling_face_with_sunglasses] ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)"
+
+if [ -d "/opt/homebrew/bin" ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+function ibrew() {
+   arch --x86_64 /usr/local/bin/brew $@
+}
+
 ARCH="$(uname -m)"
 case ARCH in
     i386)   ARCH="386" ;;
@@ -166,7 +175,8 @@ export LDFLAGS="-L${SDK_PATH}/usr/lib $LDFLAGS"
 export LDFLAGS="-L${PREFIX}/lib $LDFLAGS"
 export LDFLAGS="-L${PREFIX}/opt/openssl/lib $LDFLAGS"
 export CPPFLAGS="-I${PREFIX}/opt/openssl/include $CPPFLAGS"
-export PATH="$HOME/.jenv/bin:$HOME/.local/bin:$PATH"
+export ANDROID_HOME=$HOME/Library/Android/sdk/
+export PATH="$HOME/.jenv/bin:$HOME/.local/bin:/$HOME/Library/Flutter/sdk/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin/$PATH"
 eval "$(jenv init -)"
 export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"
 alias jenv_set_java_home='export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"'
