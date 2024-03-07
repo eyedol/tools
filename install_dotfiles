@@ -133,7 +133,7 @@ install_nvim() {
 
 help() {
   # Display Help
-  fancy_echo "Exports existing computer's configs and homebrew installs. Also can be used to import existing computer's config"
+  fancy_echo "Facilitates the migration and backup of computer configurations, including Homebrew installations."
   fancy_echo "Syntax: install.sh [-p|h|v]"
   fancy_echo "options:"
   fancy_echo "p     The operating system to port to. Valid values are mac, linux"
