@@ -6,12 +6,19 @@ set -eu
 os="mac"
 mac="mac"
 
+fancy_echo() {
+  local fmt="$1"; shift
+
+  # shellcheck disable=SC2059
+  printf "\\n$fmt\\n" "$@"
+}
+
 make_workspace_dir() {
   local workspace=~/Devel/Workspace
   if [ ! -d "$workspace" ]; then
     mkdir -p "$workspace"
-    echo "Creating workspace directory done."
-  fi 
+    fancy_echo "Creating workspace directory done."
+  fi
 }
 
 # Checks if a particular program is installed on the machine
@@ -20,7 +27,7 @@ exists() {
 }
 
 display_success_message() {
-  echo "$1 successfully installed."
+  fancy_echo "$1 successfully installed."
 }
 
 is_homebrew_installed() {
@@ -52,7 +59,7 @@ install_zsh_files() {
   fi
   ln -s "$PWD"/zshenv "$zshenv_file"
   ln -s "$PWD"/mac-zshrc "$zshrc_file"
-  #source "$zshrc_file" 
+  #source "$zshrc_file"
   display_success_message "$zshrc_file"
 }
 
