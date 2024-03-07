@@ -10,8 +10,9 @@ VI = vim
 BREW = brew
 CP = cp
 
-MAC_INSTALL = ./install_dotfiles -p mac
-LINUX_INSTALL = ./install_dotfiles -p linux
+MAC_INSTALL := ./install_dotfiles -p mac
+LINUX_INSTALL := ./install_dotfiles -p linux
+DOTFILE_HELP := ./install_dotfiles -h
 BREWFILE := ./Work.Brewfile
 DAY := $(shell date +"%H-%M-%S-%d-%m-%Y")
 BREWFILEBAK := $(BREWFILE).$(DAY)
@@ -27,6 +28,7 @@ all:
 	@echo "* make portmac -- to install dot files on a Mac machine"
 	@echo "* make brewexport -- to export brew installs on Mac machine"
 	@echo "* make brewimport -- to import brew install onto a Mac machine"
+	@echo "* make help -- to see usage of the dotfile_install functions"
 	@echo ""
 
 edit:
@@ -39,6 +41,9 @@ edit:
 
 view:
 	@umask $(UMASK); $(GPG) --decrypt $(FILECRYPT) | less
+
+help:
+	@$(DOTFILE_HELP)
 
 portlinux:
 	@$(LINUX_INSTALL)

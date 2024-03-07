@@ -32,9 +32,9 @@ display_success_message() {
 
 is_homebrew_installed() {
   if ! exists brew; then
-    echo "Please make sure homebrew and brew-cask are installed on the machine"
-    echo "See: https://brew.sh/"
-    echo "See: https://caskroom.github.io/"
+    fancy_echo "Please make sure homebrew and brew-cask are installed on the machine"
+    fancy_echo "See: https://brew.sh/"
+    fancy_echo "See: https://caskroom.github.io/"
     exit 1
   fi
 }
@@ -59,7 +59,7 @@ install_zsh_files() {
   fi
   ln -s "$PWD"/zshenv "$zshenv_file"
   ln -s "$PWD"/mac-zshrc "$zshrc_file"
-  #source "$zshrc_file"
+  # Source "$zshrc_file"
   display_success_message "$zshrc_file"
 }
 
@@ -133,22 +133,20 @@ install_nvim() {
 
 help() {
   # Display Help
-  echo "Exports existing computer's configs and homebrew installs. Also can be used to import existing computer"
-  echo
-  echo "Syntax: install.sh [-p|h|v]"
-  echo "options:"
-  echo "p     The operating system to port to. Valid values are mac, linux"
-  echo "h     Print this Help."
-  echo "v     Print version and exit."
-  echo
+  fancy_echo "Exports existing computer's configs and homebrew installs. Also can be used to import existing computer's config"
+  fancy_echo "Syntax: install.sh [-p|h|v]"
+  fancy_echo "options:"
+  fancy_echo "p     The operating system to port to. Valid values are mac, linux"
+  fancy_echo "h     Print this Help."
+  fancy_echo "v     Print version and exit."
 }
 
 version() {
-  echo "v1.0.0"
+  fancy_echo "v1.0.0"
 }
 
 mac_install() {
-  echo "Restoring a mac install"
+  fancy_echo "Restoring a mac install"
   make_workspace_dir
   is_homebrew_installed
   install_zsh_files
@@ -156,18 +154,18 @@ mac_install() {
   install_git
   install_tmux
   install_nvim
-  echo "Done"
+  fancy_echo "Done"
 }
 
 linux_install() {
-  echo "Restoring a linux install"
+  fancy_echo "Restoring a linux install"
   make_workspace_dir
   install_zsh_files
   install_htop
   install_git
   install_tmux
   install_nvim
-  echo "Done"
+  fancy_echo "Done"
 }
 
 #######################
@@ -187,7 +185,7 @@ while getopts ":hp:" option; do
       p) # Enter operating system
          os=$OPTARG;;
       \?) # Invalid option
-         echo "Error: Invalid option"
+         fancy_echo "Error: Invalid option"
          exit;;
    esac
 done
@@ -199,5 +197,5 @@ if  [[ "$os" == "$mac" ]]; then
 elif  [[ "$os" == "$linux" ]]; then
   linux_install
 else
-  echo "$os is an unsupported operating system. Supported os are $mac, $linux"
+  fancy_echo "$os is an unsupported operating system. Supported os are $mac, $linux"
 fi
