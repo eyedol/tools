@@ -149,6 +149,7 @@ mac_install() {
   fancy_echo "Restoring a mac install"
   make_workspace_dir
   is_homebrew_installed
+  check_and_update_shell_to_zsh
   install_zsh_files
   install_htop
   install_git
@@ -160,12 +161,36 @@ mac_install() {
 linux_install() {
   fancy_echo "Restoring a linux install"
   make_workspace_dir
+  check_and_update_shell_to_zsh
   install_zsh_files
   install_htop
   install_git
   install_tmux
   install_nvim
   fancy_echo "Done"
+}
+
+update_shell() {
+  fancy_echo "Updating shell"
+  local shell_path;
+  shell_path="$(command -v zsh)"
+
+  fancy_echo "Changing your shell to zsh ..."
+  if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
+    fancy_echo "Adding '$shell_path' to /etc/shells"
+    sudo sh -c "echo $shell_path >> /etc/shells"
+  fi
+  sudo chsh -s "$shell_path" "$USER"
+}
+
+check_and_update_shell_to_zsh() {
+  # Check if using zsh and not Homebrew-installed zsh
+  if [[ "$SHELL" == */zsh ]] && [[ "$(command -v zsh)" != "$HOMEBREW_PREFIX/bin/zsh" ]]; then
+    update_shell
+  else
+    # Update shell if not using native or Homebrew zsh
+    update_shell
+  fi
 }
 
 #######################
