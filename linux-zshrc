@@ -1,3 +1,4 @@
+
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
@@ -62,14 +63,11 @@ HYPHEN_INSENSITIVE="true"
 # Add in alphabetical order
 plugins=(
     adb
-    brew
-    chruby
     emoji
     git
     git-flow
     github
     git-prompt
-    macos
     tmux
 )
 
@@ -136,52 +134,8 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
-#PROMPT="$emoji[smiling_face_with_sunglasses] ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)"
-
-if [ -d "/opt/homebrew/bin" ]; then
-    export PATH="/opt/homebrew/bin:$PATH"
-fi
-
-function ibrew() {
-   arch --x86_64 /usr/local/bin/brew $@
-}
-
-ARCH="$(uname -m)"
-case ARCH in
-    i386)   ARCH="386" ;;
-    i686)   ARCH="386" ;;
-    x86_64) ARCH="amd64" ;;
-    arm)    dpkg --print-architecture | grep -q "arm64" && ARCH="arm64" || ARCH="arm" ;;
-esac
-
-if [[ "${ARCH}"  == "arm64" ]]; then
-    HOMEBREW_PREFIX="/opt/homebrew"
-else
-    HOMEBREW_PREFIX="/usr/local"
-fi
-
-
-# https://github.com/pyenv/pyenv/issues/1768
-SDK_PATH="$(xcrun --show-sdk-path)"
-
-echo $$HOMEBREW_PREFIX
-echo $SDK_PATH
-
-export CPATH="${SDK_PATH}/usr/include"
-export CFLAGS="-I${SDK_PATH}/usr/include/sasl $CFLAGS"
-export CFLAGS="-I${SDK_PATH}/usr/include $CFLAGS"
-export CFLAGS="-I${HOMEBREW_PREFIX}/include $CFLAGS"
-export LDFLAGS="-L${SDK_PATH}/usr/lib $LDFLAGS"
-export LDFLAGS="-L${HOMEBREW_PREFIX}/lib $LDFLAGS"
-export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/openssl/lib $LDFLAGS"
-export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/openssl/include $CPPFLAGS"
-export ANDROID_HOME=$HOME/Library/Android/sdk/
+export ANDROID_HOME=$HOME/Android/sdk/
 export PATH="$HOME/.jenv/bin:$HOME/.local/bin:/$HOME/Library/Flutter/sdk/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin/$PATH"
-eval "$(jenv init -)"
-export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"
-alias jenv_set_java_home='export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"'
 
-source ~/.config/broot/launcher/bash/br
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-#export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"

@@ -5,6 +5,7 @@ set -eu
 
 os="mac"
 mac="mac"
+linux="linux"
 
 fancy_echo() {
   local fmt="$1"; shift
@@ -58,7 +59,13 @@ install_zsh_files() {
     rm -f $zshenv_file
   fi
   ln -s "$PWD"/zshenv "$zshenv_file"
-  ln -s "$PWD"/mac-zshrc "$zshrc_file"
+
+  if  [[ "$os" == "$linux" ]]; then
+    ln -s "$PWD"/linux-zshrc "$zshrc_file"
+  else
+    ln -s "$PWD"/mac-zshrc "$zshrc_file"
+  fi  
+  
   # Source "$zshrc_file"
   display_success_message "$zshrc_file"
 }
@@ -185,7 +192,7 @@ update_shell() {
 
 check_and_update_shell_to_zsh() {
   # Check if using zsh and not Homebrew-installed zsh
-  if [[ "$SHELL" == */zsh ]] && [[ "$(command -v zsh)" != "$HOMEBREW_PREFIX/bin/zsh" ]]; then
+  if [[ "$SHELL" == */zsh ]]; then
     update_shell
   else
     # Update shell if not using native or Homebrew zsh
@@ -214,8 +221,6 @@ while getopts ":hp:" option; do
          exit;;
    esac
 done
-
-linux="linux"
 
 if  [[ "$os" == "$mac" ]]; then
   mac_install
