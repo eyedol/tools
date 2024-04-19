@@ -29,7 +29,7 @@
 [push]
   # https://git-scm.com/docs/git-config#git-config-pushdefault
   default = simple
-  
+
   # https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
   followTags = true
 
@@ -75,3 +75,5 @@
 	followRedirects = true
 [init]
 	defaultBranch = main
+[maintenance]
+	repo = ~/Devel/Workspace/fosdem
