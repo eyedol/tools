@@ -176,8 +176,8 @@ export LDFLAGS="-L${HOMEBREW_PREFIX}/lib $LDFLAGS"
 export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/openssl/lib $LDFLAGS"
 export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/openssl/include $CPPFLAGS"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$HOME/.local/bin:$HOME/Library/Flutter/sdk/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
-export JAVA_HOME="$HOME/.sdkman/candidates/java/current/bin/java"
+export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
+export PATH="$HOME/.local/bin:$HOME/Library/Flutter/sdk/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$JAVA_HOME/bin:$PATH"
 
 #source ~/.config/broot/launcher/bash/br
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
