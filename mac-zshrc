@@ -109,6 +109,10 @@ alias gbS='git show-branch -a'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%Creset %s %Cgreen(%cr) %C(yellow)%d%Creset' --abbrev-commit --date=relative"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# ffmpeg alias to convert mov to gif; requires ffmpeg and gifsicle installed; usage: video_to_gif <mov_file>
+alias video_to_gif='function video_to_gif(){ ffmpeg -i $1 output.gif && gifsicle -O3 output.gif -o output.gif && say "Video is ready!"};video_to_gif'
+
+
 # In order for gpg to find gpg-agent, gpg-agent must be running, and there must be an env
 # variable pointing GPG to the gpg-agent socket. This little script, which must be sourced
 # in your shell's init script (ie, .bash_profile, .zshrc, whatever), will either start
